@@ -141,13 +141,8 @@ class EntryForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { competitor, email, phoneNumber, danceStyle, group, agreeToPrivacyPolicy } = this.state;
-    const userInputNames = Object.keys(this.state);
-    const userInputValues = Object.values(this.state);
 
-    for (let i = 0; i < userInputNames.length; i += 1) {
-      const userInputName = userInputNames[i]
-      const userInputValue = userInputValues[i];
-
+    for (const [userInputName, userInputValue] of Object.entries(this.state)) {
       if (!userInputValue.value) {
         this.setState({
           [userInputName]: {
@@ -221,11 +216,40 @@ class EntryForm extends Component {
       <StyledForm onSubmit={this.handleSubmit}>
         <FormTitle>All Styles Dance Battle</FormTitle>
 
-        <InputGroup label="Name" type="text" name="competitor" value={competitor.value} onChange={this.handleInputChange} onBlur={this.handleInputBlur} isEmpty={competitor.isEmpty} isValid={true} />
+        <InputGroup
+          label="Name"
+          type="text"
+          name="competitor"
+          value={competitor.value}
+          onChange={this.handleInputChange}
+          onBlur={this.handleInputBlur}
+          isEmpty={competitor.isEmpty}
+          isValid={true}
+        />
 
-        <InputGroup label="Email" type="email" name="email" value={email.value} onChange={this.handleInputChange} onBlur={this.handleInputBlur} isEmpty={email.isEmpty} isValid={email.isValid} placeholder="example@gmail.com" />
+        <InputGroup
+          label="Email"
+          type="email"
+          name="email"
+          value={email.value}
+          onChange={this.handleInputChange}
+          onBlur={this.handleInputBlur}
+          isEmpty={email.isEmpty}
+          isValid={email.isValid}
+          placeholder="example@gmail.com"
+        />
 
-        <InputGroup label="Phone" type="tel" name="phoneNumber" value={phoneNumber.value} onChange={this.handleInputChange} onBlur={this.handleInputBlur} isEmpty={phoneNumber.isEmpty} isValid={phoneNumber.isValid} placeholder="0987654321" />
+        <InputGroup
+          label="Phone"
+          type="tel"
+          name="phoneNumber"
+          value={phoneNumber.value}
+          onChange={this.handleInputChange}
+          onBlur={this.handleInputBlur}
+          isEmpty={phoneNumber.isEmpty}
+          isValid={phoneNumber.isValid}
+          placeholder="0987654321"
+        />
 
         <StyledInputGroup>
           <StyledLabel htmlFor="danceStyle">Dance Style</StyledLabel>
@@ -241,22 +265,47 @@ class EntryForm extends Component {
         <StyledInputGroup>
           <StyledLabel>Group</StyledLabel>
           <div>
-            <input type="radio" name="group" id="upperDivision" value="Upper Division" onChange={this.handleInputChange} checked={group.value === 'Upper Division'} />
+            <input
+              type="radio"
+              name="group"
+              id="upperDivision"
+              value="Upper Division"
+              onChange={this.handleInputChange}
+              checked={group.value === 'Upper Division'}
+            />
             <StyledSmallLabel htmlFor="upperDivision">Upper Division (18 years old and older)</StyledSmallLabel>
           </div>
           <div>
-            <input type="radio" name="group" id="juniorDivision" value="Junior Division" onChange={this.handleInputChange} checked={group.value === 'Junior Division'} />
+            <input
+              type="radio"
+              name="group"
+              id="juniorDivision"
+              value="Junior Division"
+              onChange={this.handleInputChange}
+              checked={group.value === 'Junior Division'}
+            />
             <StyledSmallLabel htmlFor="juniorDivision">Junior Division (17 years old or younger)</StyledSmallLabel>
           </div>
         </StyledInputGroup>
 
         <StyledInputGroup>
           <StyledLabel>Message (optional)</StyledLabel>
-          <StyledTextArea rows="8" name="message" value={message.value} onChange={this.handleInputChange} />
+          <StyledTextArea
+            rows="8"
+            name="message"
+            value={message.value}
+            onChange={this.handleInputChange}
+          />
         </StyledInputGroup>
 
         <StyledInputGroup>
-          <input type="checkbox" name="agreeToPrivacyPolicy" id="agreeToPrivacyPolicy" checked={agreeToPrivacyPolicy.value} onChange={this.handleInputChange} />
+          <input
+            type="checkbox"
+            name="agreeToPrivacyPolicy"
+            id="agreeToPrivacyPolicy"
+            checked={agreeToPrivacyPolicy.value}
+            onChange={this.handleInputChange}
+          />
           <StyledSmallLabel htmlFor="agreeToPrivacyPolicy">I agree to the Privacy Policy</StyledSmallLabel>
           {agreeToPrivacyPolicy.isEmpty && <ErrorMessage textAlign="left">Please check this field</ErrorMessage>}
         </StyledInputGroup>
